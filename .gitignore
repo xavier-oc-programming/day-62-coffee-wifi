@@ -7,5 +7,3 @@
 *.log
 old_files/
 venv/
-advanced/data/
-advanced/output/
