@@ -1,3 +1,4 @@
+from pathlib import Path
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
@@ -5,9 +6,11 @@ from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired, URL
 import csv
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=str(Path(__file__).parent / 'templates'))
 app.config['SECRET_KEY'] = '*****'  # e.g. 'a-random-secret-key'
 Bootstrap5(app)
+
+CSV_PATH = Path(__file__).parent / "cafe-data.csv"
 
 
 class CafeForm(FlaskForm):
@@ -41,7 +44,7 @@ def add_cafe():
         ]
 
         # Correct way to append CSV rows safely
-        with open("cafe-data.csv", mode="a", newline='', encoding='utf-8') as csv_file:
+        with open(CSV_PATH, mode="a", newline='', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(new_row)
 
@@ -52,7 +55,7 @@ def add_cafe():
 
 @app.route('/cafes')
 def cafes():
-    with open('cafe-data.csv', newline='', encoding='utf-8') as csv_file:
+    with open(CSV_PATH, newline='', encoding='utf-8') as csv_file:
         csv_data = csv.reader(csv_file, delimiter=',')
         list_of_rows = []
         for row in csv_data:
