@@ -2,7 +2,7 @@
 
 Flask web app to browse and submit cafes with ratings for coffee quality, wifi strength, and power socket availability.
 
-You want to work from a cafe but don't know which ones have fast wifi, enough power outlets, and decent coffee. This app lets users browse a crowd-sourced list and submit new entries — give it a name, a Google Maps link, opening hours, and three emoji ratings. Each submission is appended to a CSV file; no database required.
+Finding a cafe that actually has reliable wifi, enough power sockets, and decent coffee is harder than it should be. Users browse a crowd-sourced table of rated cafes and submit new ones through a validated form — name, Google Maps link, opening hours, and three emoji ratings. It's built with Flask and WTForms, styled with Bootstrap 5, and persists data to a CSV file with no database required.
 
 ---
 
@@ -67,7 +67,7 @@ Copy `.env.example` to `.env` and fill in:
 
 **CSV over a database** — the project teaches WTForms and routing, not ORM setup. A CSV keeps the focus on what matters at Day 62 and is readable without any tooling.
 
-**`config.py` for all constants** — form choices, the CSV path, the port, and the secret key key name all live in one place. Changing any of them is a one-line edit.
+**`config.py` for all constants** — form choices, the CSV path, the port, and the secret key name all live in one place. Changing any of them is a one-line edit.
 
 **`forms.py` separated out** — keeps `main.py` focused on routes. A file with only route handlers is easy to read at a glance.
 
